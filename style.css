@@ -12,8 +12,79 @@
     --Amarelo: #e99b27;
     --Marrom: #7B492F;
     --Rosa: #9300D9;
+    --RoxoEscuro: #110018;
+    --AmareloAlarnjado: #f54e0c;
+    --Vermelho: #ff4800;
 
     --FontPadrao: 'Poppins', sans-serif;
+}
+
+/* KeyFrams */
+
+@keyframes flutuar{
+    0%{
+        top:0px; ;
+    }
+    100%{
+        top: 30px;
+    }
+}
+
+@keyframes aurora {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes moveBg {
+    0% {
+        background-position: 20% 20%, 80% 80%;
+    }
+    100% {
+        background-position: 40% 40%, 60% 60%;
+    }
+}
+
+@keyframes neonMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes galaxy {
+    0% {
+        background-position: 20% 20%, 80% 80%, 50% 50%;
+    }
+    100% {
+        background-position: 40% 40%, 60% 60%, 50% 50%;
+    }
+}
+
+@keyframes subtleMove {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+@keyframes moveGalaxy {
+    0% { transform: translate(0%, 0%) scale(1); }
+    50% { transform: translate(-10%, -8%) scale(1.05); }
+    100% { transform: translate(0%, 0%) scale(1); }
+}
+
+@keyframes move1 {
+    from { transform: translate(0%, 0%) scale(1); }
+    to   { transform: translate(-10%, -8%) scale(1.05); }
+}
+
+@keyframes move2 {
+    from { transform: translate(0%, 0%) scale(1); }
+    to   { transform: translate(-20%, -12%) scale(1.08); }
+}
+
+@keyframes move3 {
+    from { transform: translate(0%, 0%) scale(1); }
+    to   { transform: translate(-30%, -18%) scale(1.1); }
 }
 
 /* Reset */
@@ -27,6 +98,7 @@
 
 body{
     background-color: var(--AzulEscuro);
+    padding-top: 80px;
 }
 
 .interface{
@@ -34,13 +106,32 @@ body{
     margin: 0 auto;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+section {
+    min-height: 100vh;
+    padding: 80px 20px;
+}
+
 /* Header */
 
 header{
-    padding: 20px 0%;
-    background-color: var(--Lilas);
+    padding: 15px 0%;
+    background: linear-gradient(180deg, var(--Azul), var(--Lilas));
     position: fixed;
     width: 100%;
+    height: 80px;
+    top: 0;
+    z-index: 1000;
+    animation: aurora 10s ease infinite;
+}
+
+.header.ativo {
+    background:linear-gradient(180deg, rgb(238, 211, 135), var(--Amarelo));
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    animation: aurora 20s ease infinite;
 }
 
 header > .interface{
@@ -55,13 +146,20 @@ header a {
     display: inline-block;
     transition: 0.2s;
     font-size: 18px;
-    font-weight: 600;
-    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.678);
+    font-weight: 900;
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
 }
 
 header a:hover{
     transform: scale(1.2);
     color: var(--Amarelo);
+
+}
+
+.header.ativo a:hover{
+    transform: scale(1.2);
+    color: var(--Lilas);
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.473);
 }
 
 header nav ul{
@@ -93,18 +191,33 @@ header .btn-faleconosco button:hover{
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.678);
 }
 
+.header.ativo .btn-faleconosco button:hover{
+    background-color: black;
+    transform: scale(1.02);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.616);
+    color: white;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.678);
+}
+
 header .interface .logo img{
     width: 150px;
 }
 
 /* Main */
 
+.hero{
+    background: linear-gradient(-45deg, var(--AzulEscuro), var(--RoxoEscuro));
+    background-size: 400% 400%;
+    animation: neonMove 8s ease infinite;
+    height: calc(100vh - 80px);
+}
+
 .hero > .interface{
     display: flex;
     align-items: center;
     gap: 170px;
     min-height: 100vh;
-    padding-bottom: 50px;
+    padding-bottom: 250px;
     padding-left: 20px;
 }
 
@@ -163,11 +276,144 @@ header .interface .logo img{
     animation: flutuar 2s ease-in-out infinite alternate;
 }
 
-@keyframes flutuar{
-    0%{
-        top:0px; ;
-    }
-    100%{
-        top: 30px;
-    }
+
+/* Planos */
+
+.planos {
+    background: linear-gradient(120deg, #1a0026, #3b0050, #6c00ff, #0b0014);
+    background-size: 300% 300%;
+    animation: aurora 50s ease infinite;
+    padding-bottom: 150px;
+
+}
+
+.planos > .interface{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 50px 20px;
+    padding-top: 0
+}
+
+.cards-planos {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.planos h2{
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 36px;
+    font-weight: 900;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.678);
+    margin-bottom: 40px;
+}
+
+.planos h3{
+    color: var(--Amarelo);
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.planos p{
+    color: white;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.planos button{
+    padding: 10px 25px;
+    font-weight: 900;
+    background-color: white;
+    border-radius: 20px;
+    transition: 0.3s;
+    cursor: pointer;
+    border: 0;
+    font-size: 16px;
+    color: black;
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.678);
+    justify-content: center;
+}
+
+.planos button:hover{
+    background-color: var(--Amarelo);
+    transform: scale(1.02);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.616);
+    color: white;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.678);
+}
+
+.p-basico,
+.p-intermediario,
+.p-premium {
+    background: var(--AzulEscuro);
+    backdrop-filter: blur(10px);
+    padding: 35px 30px;
+    width: 320px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: 0.4s ease;
+    text-align: left;
+    cursor: pointer;
+}
+
+.p-intermediario{
+    background: var(--RoxoEscuro);
+    scale: 1.2;
+}
+
+.p-basico:hover,
+.p-intermediario:hover,
+.p-premium:hover {
+    transform: scale(1.07);
+    box-shadow: 0px 0px 10px var(--AzulEscuro);
+}
+
+/* Contato */
+
+.contato {
+    position: relative;
+    padding: 120px 0;
+    color: white;
+    overflow: hidden;
+    background: black;
+}
+
+.contato .interface {
+    position: relative;
+    z-index: 2;
+}
+
+.contato::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: url("assets/imagens/space.jpg") center center / cover no-repeat;
+    background-size: cover;
+    animation: moveGalaxy 80s linear infinite;
+    filter: blur(6px) brightness(0.7);
+    z-index: 0;
+}
+
+.layer1 {
+    animation: move1 160s linear infinite;
+    filter: blur(12px) brightness(0.6);
+    opacity: 0.6;
+}
+.layer2 {
+    animation: move2 110s linear infinite;
+    filter: blur(6px) brightness(0.8);
+    opacity: 0.8;
+}
+.layer3 {
+    animation: move3 70s linear infinite;
+    filter: brightness(1);
+    opacity: 1;
 }
